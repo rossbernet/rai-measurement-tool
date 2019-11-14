@@ -329,7 +329,7 @@ mapRegular.on("load", function() {
           ]
         }
       },
-      "admin-3-4-boundaries-bg"
+      "world-summary-fill"
     );
 
     mapRegular.addLayer(
@@ -396,7 +396,7 @@ mapRegular.on("load", function() {
             ]
           }
         },
-        "admin-3-4-boundaries-bg"
+        "world-summary-fill-alt"
       );
     }
   }
