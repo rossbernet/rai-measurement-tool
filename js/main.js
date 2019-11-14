@@ -20,7 +20,7 @@ var count = 0;
 
 var steps = [0.25, 0.5, 0.75];
 
-var colorsOne = ["#ffffd4", "#fed98e", "#fe9929", "#cc4c02"];
+var colorsOne = ["#f0f9e8", "#bae4bc", "#7bccc4", "#2b8cbe"];
 
 var mapAnimationDuration = 2000;
 
@@ -32,14 +32,13 @@ var colorOne = ["step", ["get", "pct_served"], colorsOne[0], steps[0], colorsOne
 var trialCodes = ["NPL", "MWI", "MMR"];
 
 function returnToPrimary(changePosition) {
-  var timeout = mapAnimationDuration;
+  selectedCountryCode = undefined;
   $body.classList.remove("trial");
   $body.classList.remove("detail");
-  console.log("this happened");
-  selectedCountryCode = undefined;
-
   removeLayerAndSource(mapAlt, "road-vector-alt");
   removeLayerAndSource(mapRegular, "road-vector");
+  removeLayerAndSource(mapRegular, "country-raster-tiles");
+  removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
 
   if (changePosition) {
     mapRegular.easeTo({
@@ -47,19 +46,15 @@ function returnToPrimary(changePosition) {
       center: mapOrigin.center,
       pitch: mapOrigin.pitch,
       bearing: mapOrigin.bearing,
-      duration: timeout
+      duration: 0
     });
-  } else {
-    timeout = 0;
   }
+
   $primary.style.display = "block";
   $detail.style.display = "none";
-  setTimeout(function() {
-    mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 1);
-    mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 1);
-    removeLayerAndSource(mapRegular, "country-raster-tiles");
-    removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
-  }, timeout);
+
+  mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 1);
+  mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 1);
 }
 
 // var mapOrigin = {
@@ -291,8 +286,10 @@ mapRegular.on("load", function() {
     removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
 
     setTimeout(function() {
-      mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 0);
-      mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 0);
+      if (selectedCountryCode) {
+        mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 0);
+        mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 0);
+      }
     }, mapAnimationDuration);
 
     popup.remove();
