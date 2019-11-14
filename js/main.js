@@ -119,6 +119,7 @@ var $indicator2alt = document.getElementById("indicator-2alt");
 var $indicator3alt = document.getElementById("indicator-3alt");
 var $indicator4alt = document.getElementById("indicator-4alt");
 var $indicator5alt = document.getElementById("indicator-5alt");
+var $buttons = document.querySelectorAll(".location input");
 
 document.onkeydown = function(e) {
   if (e.key === "Escape") {
@@ -139,6 +140,25 @@ var popup = new mapboxgl.Popup({
   closeButton: false,
   closeOnClick: false
 });
+
+// function goToCountry(number) {
+//   var code = $buttons[number].value;
+//   var country = trialRegular[code];
+//   var countryAlt = trialAlt[code];
+
+//   activateLayer(
+//     country.code,
+//     country.name,
+//     country.properties,
+//     countryAlt.properties
+//   );
+
+//   $buttons.forEach(function(button) {
+//     button.checked = false;
+//   });
+
+//   $buttons[number].checked = true;
+// }
 
 function raiDecimalToPct(decimal) {
   return Math.floor(decimal * 100) + "%";
