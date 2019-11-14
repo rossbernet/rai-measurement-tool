@@ -199,11 +199,11 @@ function removePopup() {
 mapRegular.on("mousemove", "world-summary-fill", updatePopup);
 mapRegular.on("mouseleave", "world-summary-fill", removePopup);
 
-mapRegular.on("zoomend", function() {
-  if (mapRegular.getZoom() < 2) {
-    if (mapRegular.getLayer("country-raster-tiles")) returnToPrimary(false);
-  }
-});
+// mapRegular.on("zoomend", function() {
+//   if (mapRegular.getZoom() < 2) {
+//     if (mapRegular.getLayer("country-raster-tiles")) returnToPrimary(false);
+//   }
+// });
 
 mapRegular.on("load", function() {
   mapRegular.addSource("world-summary", {
