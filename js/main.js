@@ -36,7 +36,11 @@ function returnToPrimary(changePosition) {
   $body.classList.remove("trial");
   $body.classList.remove("detail");
   removeLayerAndSource(mapAlt, "road-vector-alt");
+  removeLayerAndSource(mapAlt, "road-vector-alt-case");
+  removeLayerAndSource(mapAlt, "road-vector-alt-line");
   removeLayerAndSource(mapRegular, "road-vector");
+  removeLayerAndSource(mapRegular, "road-vector-case");
+  removeLayerAndSource(mapRegular, "road-vector-line");
   removeLayerAndSource(mapRegular, "country-raster-tiles");
   removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
 
@@ -302,7 +306,9 @@ mapRegular.on("load", function() {
 
     removeLayerAndSource(mapRegular, "country-raster-tiles");
     removeLayerAndSource(mapRegular, "road-vector");
+    removeLayerAndSource(mapRegular, "road-vector-case");
     removeLayerAndSource(mapAlt, "road-vector-alt");
+    removeLayerAndSource(mapAlt, "road-vector-alt-case");
     removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
 
     setTimeout(function() {
@@ -334,13 +340,37 @@ mapRegular.on("load", function() {
 
     mapRegular.addLayer(
       {
+        id: "road-vector-case",
+        type: "line",
+        "source-layer": "roads",
+        paint: {
+          "line-color": "#162128",
+          "line-opacity": 1,
+          "line-width": ["case", ["==", ["get", "isIncluded"], true], 4, 2]
+        },
+        source: {
+          maxzoom: 10,
+          type: "vector",
+          bounds: countryToBboxIndex[countryCode],
+          tiles: [
+            "https://un-sdg.s3.amazonaws.com/tiles/cardno/" +
+              countryCode +
+              "/roads/{z}/{x}/{y}.mvt"
+          ]
+        }
+      },
+      "admin-3-4-boundaries-bg"
+    );
+
+    mapRegular.addLayer(
+      {
         id: "road-vector",
         type: "line",
         "source-layer": "roads",
         paint: {
           "line-color": "#fff",
           "line-opacity": 1,
-          "line-width": ["case", ["==", ["get", "isIncluded"], true], 2, 0.5]
+          "line-width": ["case", ["==", ["get", "isIncluded"], true], 2, 1]
         },
         source: {
           maxzoom: 10,
@@ -357,26 +387,43 @@ mapRegular.on("load", function() {
     );
 
     if (indicatorsAlt) {
+      mapRegular.addSource("road-vector-alt", {
+        maxzoom: 10,
+        type: "vector",
+        bounds: countryToBboxIndex[countryCode],
+        tiles: [
+          "https://un-sdg.s3.amazonaws.com/tiles/cardno/" +
+            countryCode +
+            "/country-data-roads/{z}/{x}/{y}.pbf"
+        ]
+      });
+
       mapAlt.addLayer(
         {
-          id: "road-vector-alt",
+          id: "road-vector-alt-case",
+          type: "line",
+          "source-layer": "data",
+          paint: {
+            "line-color": "#162128",
+            "line-opacity": 1,
+            "line-width": ["case", ["==", ["get", "used"], 1], 4, 1.5]
+          },
+          source: "road-vector-alt"
+        },
+        "admin-3-4-boundaries-bg"
+      );
+
+      mapAlt.addLayer(
+        {
+          id: "road-vector-alt-line",
           type: "line",
           "source-layer": "data",
           paint: {
             "line-color": "#fff",
             "line-opacity": 1,
-            "line-width": ["case", ["==", ["get", "used"], 1], 2, 0.5]
+            "line-width": ["case", ["==", ["get", "used"], 1], 2, 0.75]
           },
-          source: {
-            maxzoom: 10,
-            type: "vector",
-            bounds: countryToBboxIndex[countryCode],
-            tiles: [
-              "https://un-sdg.s3.amazonaws.com/tiles/cardno/" +
-                countryCode +
-                "/country-data-roads/{z}/{x}/{y}.pbf"
-            ]
-          }
+          source: "road-vector-alt"
         },
         "admin-3-4-boundaries-bg"
       );
