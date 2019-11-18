@@ -10,6 +10,14 @@ function removeLayerAndSource(map, layer) {
   map.getSource(layer) && map.removeSource(layer);
 }
 
+function removeLayer(map, layer) {
+  map.getLayer(layer) && map.removeLayer(layer);
+}
+
+function removeSource(map, layer) {
+  map.getSource(layer) && map.removeSource(layer);
+}
+
 // prettier-ignore
 var fillOpacity = ["interpolate", ["exponential", 1.21], ["zoom"], 0, 1, 14, 0.3, 17, 0.2];
 
@@ -20,7 +28,7 @@ var count = 0;
 
 var steps = [0.25, 0.5, 0.75];
 
-var colorsOne = ["#f0f9e8", "#bae4bc", "#7bccc4", "#2b8cbe"];
+var colorsOne = ["#123f5a", "#567881", "#93b7aa", "#d2fbd4"];
 
 var mapAnimationDuration = 2000;
 
@@ -31,18 +39,22 @@ var colorOne = ["step", ["get", "pct_served"], colorsOne[0], steps[0], colorsOne
 
 var trialCodes = ["NPL", "MWI", "MMR"];
 
+function clearMap() {
+  removeLayer(mapAlt, "road-vector-alt-case");
+  removeLayer(mapAlt, "road-vector-alt-line");
+  removeSource(mapAlt, "road-vector-alt");
+  removeLayer(mapRegular, "road-vector-case");
+  removeLayer(mapRegular, "road-vector-line");
+  removeSource(mapRegular, "road-vector");
+  removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
+  removeLayerAndSource(mapRegular, "country-raster-tiles");
+}
+
 function returnToPrimary(changePosition) {
   selectedCountryCode = undefined;
   $body.classList.remove("trial");
   $body.classList.remove("detail");
-  removeLayerAndSource(mapAlt, "road-vector-alt");
-  removeLayerAndSource(mapAlt, "road-vector-alt-case");
-  removeLayerAndSource(mapAlt, "road-vector-alt-line");
-  removeLayerAndSource(mapRegular, "road-vector");
-  removeLayerAndSource(mapRegular, "road-vector-case");
-  removeLayerAndSource(mapRegular, "road-vector-line");
-  removeLayerAndSource(mapRegular, "country-raster-tiles");
-  removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
+  clearMap();
 
   if (changePosition) {
     mapRegular.easeTo({
@@ -60,15 +72,6 @@ function returnToPrimary(changePosition) {
   mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 1);
   mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 1);
 }
-
-// var mapOrigin = {
-//   zoom: 0,
-//   lng: 66.90249510103365,
-//   lat: 7.034499481291888,
-//   pitch: 0,
-//   bearing: 0,
-//   center: [0, 0]
-// };
 
 var mapOrigin = {
   zoom: 0,
@@ -203,12 +206,6 @@ function removePopup() {
 mapRegular.on("mousemove", "world-summary-fill", updatePopup);
 mapRegular.on("mouseleave", "world-summary-fill", removePopup);
 
-// mapRegular.on("zoomend", function() {
-//   if (mapRegular.getZoom() < 2) {
-//     if (mapRegular.getLayer("country-raster-tiles")) returnToPrimary(false);
-//   }
-// });
-
 mapRegular.on("load", function() {
   mapRegular.addSource("world-summary", {
     type: "vector",
@@ -304,13 +301,6 @@ mapRegular.on("load", function() {
       duration: mapAnimationDuration
     });
 
-    removeLayerAndSource(mapRegular, "country-raster-tiles");
-    removeLayerAndSource(mapRegular, "road-vector");
-    removeLayerAndSource(mapRegular, "road-vector-case");
-    removeLayerAndSource(mapAlt, "road-vector-alt");
-    removeLayerAndSource(mapAlt, "road-vector-alt-case");
-    removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
-
     setTimeout(function() {
       if (selectedCountryCode) {
         mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 0);
@@ -338,6 +328,17 @@ mapRegular.on("load", function() {
       "world-summary-fill"
     );
 
+    mapRegular.addSource("road-vector", {
+      maxzoom: 10,
+      type: "vector",
+      bounds: countryToBboxIndex[countryCode],
+      tiles: [
+        "https://un-sdg.s3.amazonaws.com/tiles/cardno/" +
+          countryCode +
+          "/roads/{z}/{x}/{y}.mvt"
+      ]
+    });
+
     mapRegular.addLayer(
       {
         id: "road-vector-case",
@@ -348,23 +349,14 @@ mapRegular.on("load", function() {
           "line-opacity": 1,
           "line-width": ["case", ["==", ["get", "isIncluded"], true], 4, 2]
         },
-        source: {
-          maxzoom: 10,
-          type: "vector",
-          bounds: countryToBboxIndex[countryCode],
-          tiles: [
-            "https://un-sdg.s3.amazonaws.com/tiles/cardno/" +
-              countryCode +
-              "/roads/{z}/{x}/{y}.mvt"
-          ]
-        }
+        source: "road-vector"
       },
       "admin-3-4-boundaries-bg"
     );
 
     mapRegular.addLayer(
       {
-        id: "road-vector",
+        id: "road-vector-line",
         type: "line",
         "source-layer": "roads",
         paint: {
@@ -372,22 +364,13 @@ mapRegular.on("load", function() {
           "line-opacity": 1,
           "line-width": ["case", ["==", ["get", "isIncluded"], true], 2, 1]
         },
-        source: {
-          maxzoom: 10,
-          type: "vector",
-          bounds: countryToBboxIndex[countryCode],
-          tiles: [
-            "https://un-sdg.s3.amazonaws.com/tiles/cardno/" +
-              countryCode +
-              "/roads/{z}/{x}/{y}.mvt"
-          ]
-        }
+        source: "road-vector"
       },
       "admin-3-4-boundaries-bg"
     );
 
     if (indicatorsAlt) {
-      mapRegular.addSource("road-vector-alt", {
+      mapAlt.addSource("road-vector-alt", {
         maxzoom: 10,
         type: "vector",
         bounds: countryToBboxIndex[countryCode],
@@ -453,7 +436,9 @@ mapRegular.on("load", function() {
   mapRegular.on("click", "world-summary-fill", function(e) {
     var feature = e.features[0];
     if (feature.properties.code !== selectedCountryCode) {
+      clearMap();
       if (trialCodes.includes(feature.properties.code)) {
+        $body.classList.add("trial");
         var regular = trialRegular[feature.properties.code];
         var alt = trialAlt[feature.properties.code];
         activateLayer(
@@ -462,7 +447,6 @@ mapRegular.on("load", function() {
           regular.properties,
           alt.properties
         );
-        $body.classList.add("trial");
       } else {
         activateLayer(
           feature.properties.code,
