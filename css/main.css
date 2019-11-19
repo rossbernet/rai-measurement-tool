@@ -420,6 +420,7 @@ header .logo {
 .legend-item {
   display: flex;
   width: 50%;
+  margin-bottom: 5px;
 }
 
 .legend-bar {
@@ -453,6 +454,9 @@ header .logo {
 .legend-label {
   display: inline-block;
   font-size: 14px;
+  line-height: 1.2;
+  position: relative;
+  top: 3px;
 }
 
 .legend-road {
