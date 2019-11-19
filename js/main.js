@@ -274,7 +274,7 @@ mapRegular.on("load", function() {
       Math.floor(indicatorsRegular.pop_served)
     );
     $indicator5.innerHTML = numberWithCommas(
-      Math.floor(indicatorsRegular.roads_total_km)
+      Math.floor(indicatorsRegular.roads_included_km)
     );
 
     if (indicatorsAlt) {
@@ -289,7 +289,7 @@ mapRegular.on("load", function() {
         Math.floor(indicatorsAlt.pop_served)
       );
       $indicator5alt.innerHTML = numberWithCommas(
-        Math.floor(indicatorsAlt.roads_total_km)
+        Math.floor(indicatorsAlt.roads_included_km)
       );
     }
 
