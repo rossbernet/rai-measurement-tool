@@ -28,7 +28,7 @@ var count = 0;
 
 var steps = [0.25, 0.5, 0.75];
 
-var colorsOne = ["#123f5a", "#567881", "#93b7aa", "#d2fbd4"];
+var colorsOne = ["#2171b5", "#6baed6", "#bdd7e7", "#eff3ff"];
 
 var mapAnimationDuration = 2000;
 
