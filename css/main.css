@@ -889,6 +889,19 @@ h2 {
   margin-right: 5px;
 }
 
+.button {
+  background-color: #b8c5d2;
+  padding: 12px 12px;
+  top: 20px;
+  font-size: 13px;
+  color: #fcfdfd;
+  font-weight: 800;
+  color: #132128 !important;
+  border-radius: 2px;
+  text-decoration: none !important;
+  display: inline-block;
+}
+
 .buttons-visualization {
   margin-top: 18px;
   z-index: 6000;
@@ -1303,7 +1316,8 @@ tr:last-child td {
 }
 
 body:not(.trial) td:nth-child(3),
-body:not(.trial) th:nth-child(3) {
+body:not(.trial) th:nth-child(3),
+body:not(.trial) .approach {
   display: none;
 }
 
@@ -1334,7 +1348,6 @@ body:not(.trial) .map-label {
   background-color: #132128;
   color: #fcfdfd;
   padding: 10px 12px 8px;
-  min-width: 100px;
   z-index: 20;
   font-size: 13px;
   font-weight: 600;

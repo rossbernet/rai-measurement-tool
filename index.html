@@ -169,6 +169,11 @@
               These country-specific datasets have been used to generate scores
               that better reflect the RAI for those countries.
             </p>
+            <a
+              href="/2019_11_07_RAI_Output_Open_data_approach_with_updates.xlsx"
+              class="button"
+              >Download data</a
+            >
           </div>
         </div>
       </header>
@@ -186,22 +191,28 @@
             <h2 id="city-name"></h2>
             <p id="regular-description" style="margin: -5px 0 20px;">
               The following statistics were generated using three open datasets;
-              OpenStreetMap, WorldPop (2019), GRUMP. The methodology is described in
-              further detail that can be found in the about section.
+              OpenStreetMap, WorldPop (2019), GRUMP. The methodology is
+              described in further detail that can be found in the about
+              section.
             </p>
             <p id="alt-description" style="margin: -5px 0 20px;">
-              The following statistics were generated using two approaches: (1)
+              The following statistics were generated using two approaches: #1
+              with open datasets—OpenStreetMap, WorldPop (2019), GRUMP; and #2
               with data provided by the country using the RAI methodology
               developed by World Bank and Supplemental Guidelines developed by
-              TRL; and (2) with open datasets - OpenStreetMap, WorldPop (2019), GRUMP.
-              Both approaches are described in further detail that can be found
-              in the about section.
+              TRL. Both approaches are described in further detail that can be
+              found in the about section.
             </p>
             <table>
               <tr>
                 <th>Indicator</th>
-                <th>Open Data Approach</th>
-                <th>In-country Data Approach</th>
+                <th>
+                  <span class="approach">Approach #1:<br /></span>Open Data
+                </th>
+                <th>
+                  <span class="approach">Approach #2:<br /></span>In-country
+                  Data
+                </th>
               </tr>
               <tr>
                 <td>Percent served (RAI)</td>
@@ -234,8 +245,10 @@
       </header>
 
       <div id="map-container" style="left: 400px">
-        <div class="map-label map-label-left">Open Data Approach</div>
-        <div class="map-label map-label-right">In-country Data Approach</div>
+        <div class="map-label map-label-left">Approach #1: Open Data</div>
+        <div class="map-label map-label-right">
+          Approach #2: In-country Data
+        </div>
         <div id="after" class="map"></div>
         <div id="before" class="map"></div>
       </div>
@@ -268,7 +281,11 @@
 
         <ul>
           <li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
-          <li><a href="https://www.worldpop.org/geodata/listing?id=29">WorldPop</a></li>
+          <li>
+            <a href="https://www.worldpop.org/geodata/listing?id=29"
+              >WorldPop</a
+            >
+          </li>
           <li>
             <a
               href="https://sedac.ciesin.columbia.edu/data/set/grump-v1-urban-ext-polygons-rev01"
@@ -388,6 +405,13 @@
           For further information contact
           <a href="mailto:rbernet@azavea.com">rbernet@azavea.com</a>.
         </p>
+
+        <a
+          href="/2019_11_07_RAI_Output_Open_data_approach_with_updates.xlsx"
+          class="button"
+          style="margin-bottom: 20px;"
+          >Download data</a
+        >
       </div>
     </div>
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js"></script>
