@@ -406,9 +406,11 @@ header .logo {
   user-select: none;
 }
 
-.legend h4 {
-  margin: 0 0 6px;
+.legend label {
+  margin: 0px 0 2px;
   font-size: 16px;
+  font-weight: 700;
+  display: inline-block;
 }
 
 .legend-items {
@@ -1104,15 +1106,22 @@ legend {
   top: -1px;
 }
 
+.layer-toggle {
+  margin-right: 5px;
+  position: relative;
+  top: -2px;
+  font-size: 14px;
+}
+
 .satellite-toggle {
   position: absolute;
-  bottom: 20px;
-  right: 5px;
+  bottom: 15px;
+  right: 265px;
   z-index: 29999;
   background-image: url(../img/satellite.jpg);
-  width: 85px;
+  width: 92px;
   background-size: cover;
-  height: 85px;
+  height: 92px;
   box-shadow: 0 0 5px #00000085;
   font-size: 14px;
   cursor: pointer;
@@ -1302,6 +1311,7 @@ td:nth-child(1),
 th:nth-child(1) {
   font-weight: 600;
   text-align: left;
+  width: 110px;
 }
 
 td:nth-child(2),

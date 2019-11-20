@@ -18,21 +18,41 @@ function removeSource(map, layer) {
   map.getSource(layer) && map.removeSource(layer);
 }
 
-// prettier-ignore
-var fillOpacity = ["interpolate", ["exponential", 1.21], ["zoom"], 0, 1, 14, 0.3, 17, 0.2];
+function toggleSatellite() {
+  satellite = !satellite;
+  if (satellite) {
+    mapRegular.setLayoutProperty("mapbox-satellite", "visibility", "visible");
+    mapAlt.setLayoutProperty("mapbox-satellite", "visibility", "visible");
+    if (!selectedCountryCode) {
+      mapRegular.setPaintProperty("world-sum-fill", "fill-opacity", 0);
+      isAlt && mapAlt.setPaintProperty("world-sum-fill-alt", "fill-opacity", 0);
+    }
+  } else {
+    mapRegular.setLayoutProperty("mapbox-satellite", "visibility", "none");
+    mapAlt.setLayoutProperty("mapbox-satellite", "visibility", "none");
+    if (selectedCountryCode) {
+      mapRegular.setPaintProperty("raster-tiles", "raster-opacity", 1);
+      isAlt && mapAlt.setPaintProperty("raster-tiles-alt", "raster-opacity", 1);
+    } else {
+      mapRegular.setPaintProperty("world-sum-fill", "fill-opacity", 1);
+      isAlt && mapAlt.setPaintProperty("world-sum-fill-alt", "fill-opacity", 1);
+    }
+  }
+}
 
+// prettier-ignore
+var fillOpacity = ["interpolate", ["exponential", 1.1], ["zoom"], 0, 0.9, 14, 0.1, 20, 0.05];
 // prettier-ignore
 var lineWidth = ["interpolate", ["linear"], ["zoom"], 14, 1, 17, 2, 18, 2, 23, 8];
-
 var count = 0;
-
 var steps = [0.25, 0.5, 0.75];
-
 var colorsOne = ["#2171b5", "#6baed6", "#bdd7e7", "#eff3ff"];
-
 var mapAnimationDuration = 2000;
-
 var selectedCountryCode;
+var satellite = false;
+var isAlt = false;
+var raster = true;
+var roads = true;
 
 // prettier-ignore
 var colorOne = ["step", ["get", "pct_served"], colorsOne[0], steps[0], colorsOne[1], steps[1], colorsOne[2], steps[2], colorsOne[3]];
@@ -46,14 +66,16 @@ function clearMap() {
   removeLayer(mapRegular, "road-vector-case");
   removeLayer(mapRegular, "road-vector-line");
   removeSource(mapRegular, "road-vector");
-  removeLayerAndSource(mapAlt, "country-raster-tiles-alt");
-  removeLayerAndSource(mapRegular, "country-raster-tiles");
+  removeLayerAndSource(mapAlt, "raster-tiles-alt");
+  removeLayerAndSource(mapRegular, "raster-tiles");
 }
 
 function returnToPrimary(changePosition) {
   selectedCountryCode = undefined;
   $body.classList.remove("trial");
   $body.classList.remove("detail");
+  $roadsButton.checked = true;
+  $rasterButton.checked = true;
   clearMap();
 
   if (changePosition) {
@@ -69,8 +91,16 @@ function returnToPrimary(changePosition) {
   $primary.style.display = "block";
   $detail.style.display = "none";
 
-  mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 1);
-  mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 1);
+  mapRegular.setPaintProperty(
+    "world-sum-fill",
+    "fill-opacity",
+    satellite ? 0 : 1
+  );
+  mapAlt.setPaintProperty(
+    "world-sum-fill-alt",
+    "fill-opacity",
+    satellite ? 0 : 1
+  );
 }
 
 var mapOrigin = {
@@ -82,25 +112,25 @@ var mapOrigin = {
 
 var mapAlt = new mapboxgl.Map({
   container: "before",
-  style: "mapbox://styles/azavea/ck24v5wnsh0zj1dpeq0l2rqph",
+  style: "mapbox://styles/azavea/ck368701v0m7g1cqg0rk0rprk",
   zoom: mapOrigin.zoom,
   center: mapOrigin.center,
   pitch: mapOrigin.pitch,
   bearing: mapOrigin.bearing,
   minZoom: 0,
-  maxZoom: 14,
+  maxZoom: 18,
   maxBounds: [-180, -59.3, 180, 84.9]
 });
 
 var mapRegular = new mapboxgl.Map({
   container: "after",
-  style: "mapbox://styles/azavea/ck24v5wnsh0zj1dpeq0l2rqph",
+  style: "mapbox://styles/azavea/ck368701v0m7g1cqg0rk0rprk",
   zoom: mapOrigin.zoom,
   center: mapOrigin.center,
   pitch: mapOrigin.pitch,
   bearing: mapOrigin.bearing,
   minZoom: 0,
-  maxZoom: 14,
+  maxZoom: 18,
   maxBounds: [-180, -59.3, 180, 84.9]
 });
 
@@ -126,12 +156,46 @@ var $indicator2alt = document.getElementById("indicator-2alt");
 var $indicator3alt = document.getElementById("indicator-3alt");
 var $indicator4alt = document.getElementById("indicator-4alt");
 var $indicator5alt = document.getElementById("indicator-5alt");
+var $rasterButton = document.getElementById("raster");
+var $roadsButton = document.getElementById("roads");
 var $buttons = document.querySelectorAll(".location input");
+
+$rasterButton.addEventListener("click", function(e) {
+  if (raster) {
+    raster = false;
+    $rasterButton.checked = raster;
+    mapRegular.setPaintProperty("raster-tiles", "raster-opacity", 0);
+    isAlt && mapAlt.setPaintProperty("raster-tiles-alt", "raster-opacity", 0);
+  } else {
+    raster = true;
+    $rasterButton.checked = raster;
+    mapRegular.setPaintProperty("raster-tiles", "raster-opacity", 1);
+    isAlt && mapAlt.setPaintProperty("raster-tiles-alt", "raster-opacity", 1);
+  }
+});
+
+$roadsButton.addEventListener("click", function(e) {
+  if (roads) {
+    roads = false;
+    $roadsButton.checked = roads;
+    mapRegular.setPaintProperty("road-vector-line", "line-opacity", 0);
+    mapRegular.setPaintProperty("road-vector-case", "line-opacity", 0);
+    isAlt && mapAlt.setPaintProperty("road-vector-alt-line", "line-opacity", 0);
+    isAlt && mapAlt.setPaintProperty("road-vector-alt-case", "line-opacity", 0);
+  } else {
+    roads = true;
+    $roadsButton.checked = roads;
+    mapRegular.setPaintProperty("road-vector-line", "line-opacity", 1);
+    mapRegular.setPaintProperty("road-vector-case", "line-opacity", 1);
+    isAlt && mapAlt.setPaintProperty("road-vector-alt-line", "line-opacity", 1);
+    isAlt && mapAlt.setPaintProperty("road-vector-alt-case", "line-opacity", 1);
+  }
+});
 
 document.onkeydown = function(e) {
   if (e.key === "Escape") {
     if ($modal.classList.contains("active")) hideModal();
-    if (mapRegular.getLayer("country-raster-tiles")) returnToPrimary(true);
+    if (mapRegular.getLayer("raster-tiles")) returnToPrimary(true);
   }
 };
 
@@ -203,8 +267,8 @@ function removePopup() {
   mapRegular.getCanvas().style.cursor = "";
 }
 
-mapRegular.on("mousemove", "world-summary-fill", updatePopup);
-mapRegular.on("mouseleave", "world-summary-fill", removePopup);
+mapRegular.on("mousemove", "world-sum-fill", updatePopup);
+mapRegular.on("mouseleave", "world-sum-fill", removePopup);
 
 mapRegular.on("load", function() {
   mapRegular.addSource("world-summary", {
@@ -229,7 +293,7 @@ mapRegular.on("load", function() {
 
   mapRegular.addLayer(
     {
-      id: "world-summary-fill",
+      id: "world-sum-fill",
       type: "fill",
       source: "world-summary",
       "source-layer": "data",
@@ -243,7 +307,7 @@ mapRegular.on("load", function() {
 
   mapAlt.addLayer(
     {
-      id: "world-summary-fill-alt",
+      id: "world-sum-fill-alt",
       type: "fill",
       source: "world-summary-alt",
       "source-layer": "data",
@@ -261,6 +325,11 @@ mapRegular.on("load", function() {
     indicatorsRegular,
     indicatorsAlt
   ) {
+    if (indicatorsAlt) {
+      isAlt = true;
+    } else {
+      isAlt = false;
+    }
     $primary.style.display = "none";
     $detail.style.display = "block";
     $body.classList.add("detail");
@@ -277,7 +346,7 @@ mapRegular.on("load", function() {
       Math.floor(indicatorsRegular.roads_included_km)
     );
 
-    if (indicatorsAlt) {
+    if (isAlt) {
       $indicator1alt.innerHTML = raiDecimalToPct(indicatorsAlt.pct_served);
       $indicator2alt.innerHTML = numberWithCommas(
         Math.floor(indicatorsAlt.pop)
@@ -303,8 +372,8 @@ mapRegular.on("load", function() {
 
     setTimeout(function() {
       if (selectedCountryCode) {
-        mapRegular.setPaintProperty("world-summary-fill", "fill-opacity", 0);
-        mapAlt.setPaintProperty("world-summary-fill-alt", "fill-opacity", 0);
+        mapRegular.setPaintProperty("world-sum-fill", "fill-opacity", 0);
+        mapAlt.setPaintProperty("world-sum-fill-alt", "fill-opacity", 0);
       }
     }, mapAnimationDuration);
 
@@ -312,7 +381,7 @@ mapRegular.on("load", function() {
 
     mapRegular.addLayer(
       {
-        id: "country-raster-tiles",
+        id: "raster-tiles",
         type: "raster",
         source: {
           tileSize: 256,
@@ -325,7 +394,7 @@ mapRegular.on("load", function() {
           ]
         }
       },
-      "world-summary-fill"
+      "world-sum-fill"
     );
 
     mapRegular.addSource("road-vector", {
@@ -413,7 +482,7 @@ mapRegular.on("load", function() {
 
       mapAlt.addLayer(
         {
-          id: "country-raster-tiles-alt",
+          id: "raster-tiles-alt",
           type: "raster",
           source: {
             tileSize: 256,
@@ -426,14 +495,14 @@ mapRegular.on("load", function() {
             ]
           }
         },
-        "world-summary-fill-alt"
+        "world-sum-fill-alt"
       );
     }
   }
 
   mapRegular.addControl(new mapboxgl.ScaleControl());
 
-  mapRegular.on("click", "world-summary-fill", function(e) {
+  mapRegular.on("click", "world-sum-fill", function(e) {
     var feature = e.features[0];
     if (feature.properties.code !== selectedCountryCode) {
       clearMap();

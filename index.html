@@ -52,13 +52,13 @@
       </p>
     <![endif]-->
     <div class="app">
-      <!-- <label class="satellite-toggle"
+      <label class="satellite-toggle"
         ><div class="satellite-checkbox">
           <input type="checkbox" onclick="toggleSatellite()" />Aerial
         </div></label
-      > -->
+      >
       <div id="legend-vector" class="legend">
-        <h4>Percent served (RAI)</h4>
+        <label>Percent served (RAI)</label>
         <div id="legend-content">
           <div id="legend-default" class="legend-items">
             <div class="legend-item">
@@ -82,7 +82,14 @@
       </div>
 
       <div id="legend-raster" class="legend">
-        <h4>Population Not Served</h4>
+        <label for="raster">
+          <input
+            class="layer-toggle"
+            checked
+            id="raster"
+            type="checkbox"
+          />Population Not Served
+        </label>
         <div id="legend-content">
           <div class="legend-bar">
             <div
@@ -93,7 +100,9 @@
             <div class="legend-high">High</div>
           </div>
         </div>
-        <h4 style="margin-top: 10px;">Roads</h4>
+        <label style="margin-top: 10px;">
+          <input class="layer-toggle" id="roads" checked type="checkbox" />Roads
+        </label>
         <div class="legend-items">
           <div class="legend-item">
             <div class="legend-color legend-road"></div>
