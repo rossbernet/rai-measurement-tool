@@ -75,7 +75,9 @@ function returnToPrimary(changePosition) {
   $body.classList.remove("trial");
   $body.classList.remove("detail");
   $roadsButton.checked = true;
+  roads = true;
   $rasterButton.checked = true;
+  raster = true;
   clearMap();
 
   if (changePosition) {
@@ -383,6 +385,9 @@ mapRegular.on("load", function() {
       {
         id: "raster-tiles",
         type: "raster",
+        paint: {
+          "raster-opacity": raster ? 1 : 0
+        },
         source: {
           tileSize: 256,
           type: "raster",
@@ -415,7 +420,7 @@ mapRegular.on("load", function() {
         "source-layer": "roads",
         paint: {
           "line-color": "#162128",
-          "line-opacity": 1,
+          "line-opacity": roads ? 1 : 0,
           "line-width": ["case", ["==", ["get", "isIncluded"], true], 4, 2]
         },
         source: "road-vector"
@@ -430,7 +435,7 @@ mapRegular.on("load", function() {
         "source-layer": "roads",
         paint: {
           "line-color": "#fff",
-          "line-opacity": 1,
+          "line-opacity": roads ? 1 : 0,
           "line-width": ["case", ["==", ["get", "isIncluded"], true], 2, 1]
         },
         source: "road-vector"
@@ -457,7 +462,7 @@ mapRegular.on("load", function() {
           "source-layer": "data",
           paint: {
             "line-color": "#162128",
-            "line-opacity": 1,
+            "line-opacity": roads ? 1 : 0,
             "line-width": ["case", ["==", ["get", "used"], 1], 4, 1.5]
           },
           source: "road-vector-alt"
@@ -472,7 +477,7 @@ mapRegular.on("load", function() {
           "source-layer": "data",
           paint: {
             "line-color": "#fff",
-            "line-opacity": 1,
+            "line-opacity": roads ? 1 : 0,
             "line-width": ["case", ["==", ["get", "used"], 1], 2, 0.75]
           },
           source: "road-vector-alt"
@@ -484,6 +489,9 @@ mapRegular.on("load", function() {
         {
           id: "raster-tiles-alt",
           type: "raster",
+          paint: {
+            "raster-opacity": raster ? 1 : 0
+          },
           source: {
             tileSize: 256,
             type: "raster",
