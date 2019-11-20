@@ -45,39 +45,39 @@ var trialRegular = {
     code: "NPL",
     name: "Nepal",
     properties: {
-      pop: 28609664.373119358,
-      pop_urban: 8197883.369360454,
-      pop_rural: 20411781.003758907,
-      pop_served: 14244420.587836985,
-      pct_served: 0.6978529009895716,
-      roads_total_km: 107527.59433375695,
-      roads_included_km: 24533.436085921425
+      pop: 28609714.76,
+      pop_urban: 8199577.30,
+      pop_rural: 20410137.45,
+      pop_served: 14282491.52,
+      pct_served: 0.6997743921967212,
+      roads_total_km: 107649.09,
+      roads_included_km: 24576.16
     }
   },
   MWI: {
     code: "MWI",
     name: "Malawi",
     properties: {
-      pop: 17908438.458111044,
-      pop_urban: 3336035.0901774447,
-      pop_rural: 14572403.367933601,
-      pop_served: 9431741.468727255,
-      pct_served: 0.6472330768362952,
-      roads_total_km: 128530.94980590463,
-      roads_included_km: 15816.565853141232
+      pop: 17908438.46,
+      pop_urban: 3336035.09,
+      pop_rural: 14572403.37,
+      pop_served: 9431741.46,
+      pct_served: 0.6472330768299093,
+      roads_total_km: 128533.60,
+      roads_included_km: 15816.53
     }
   },
   MMR: {
     code: "MMR",
     name: "Myanmar",
     properties: {
-      pop: 48776962.85514138,
-      pop_urban: 11736580.490206918,
-      pop_rural: 37040382.364934474,
-      pop_served: 17186093.058874846,
-      pct_served: 0.46398260389300516,
-      roads_total_km: 202667.72588164877,
-      roads_included_km: 46432.18852719644
+      pop: 48801992.23,
+      pop_urban: 11757452.81,
+      pop_rural: 37044539.42,
+      pop_served: 17138992.67,
+      pct_served: 0.4626590839089929,
+      roads_total_km: 202864.78,
+      roads_included_km: 46348.40
     }
   }
 };
