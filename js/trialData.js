@@ -16,7 +16,7 @@ var trialAlt = {
     code: "MWI",
     name: "Malawi",
     properties: {
-      pop: 17907782.55,
+      pop: 17908438.46,
       pop_urban: 2876284.39,
       pop_rural: 15031498.16,
       pop_served: 9480698.478,
