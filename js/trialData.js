@@ -4,8 +4,8 @@ var trialAlt = {
     name: "Nepal",
     properties: {
       pop: 28609714.76,
-      pop_urban: 8150516.601,
-      pop_rural: 20459198.16,
+      pop_urban: 8199577.30,
+      pop_rural: 20410137.45,
       pop_served: 13552331.01,
       pct_served: 0.6624,
       roads_total_km: 81795.302,
@@ -30,8 +30,8 @@ var trialAlt = {
     name: "Myanmar",
     properties: {
       pop: 48801992.23,
-      pop_urban: 11746988.85,
-      pop_rural: 37055003.38,
+      pop_urban: 11757452.81,
+      pop_rural: 37044539.42,
       pop_served: 23036539.79,
       pct_served: 0.6217,
       roads_total_km: 79833.916,
