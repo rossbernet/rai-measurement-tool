@@ -46,7 +46,7 @@ var fillOpacity = ["interpolate", ["exponential", 1.1], ["zoom"], 0, 0.9, 14, 0.
 var lineWidth = ["interpolate", ["linear"], ["zoom"], 14, 1, 17, 2, 18, 2, 23, 8];
 var count = 0;
 var steps = [0.25, 0.5, 0.75];
-var colorsOne = ["#2171b5", "#6baed6", "#bdd7e7", "#eff3ff"];
+var colorsOne = ["#eff3ff", "#bdd7e7", "#6baed6", "#2171b5"];
 var mapAnimationDuration = 2000;
 var selectedCountryCode;
 var satellite = false;
