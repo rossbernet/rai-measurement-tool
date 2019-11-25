@@ -136,6 +136,13 @@ var mapRegular = new mapboxgl.Map({
   maxBounds: [-180, -59.3, 180, 84.9]
 });
 
+var nav = new mapboxgl.NavigationControl({
+  showCompass: false,
+  showZoom: true
+});
+
+mapRegular.addControl(nav, "top-left");
+
 compare = new mapboxgl.Compare(mapRegular, mapAlt, "#map-container", {
   mousemove: true,
   orientation: "vertical"
