@@ -1433,10 +1433,10 @@ body:not(.detail) #legend-raster {
   right: 0;
   z-index: 200000;
   overflow-y: auto;
+  background-color: rgba(25, 34, 42, 0.8);
 }
 
 #modal-backdrop {
-  background: rgba(25, 34, 42, 0.8);
   top: 0;
   left: 0;
   right: 0;
