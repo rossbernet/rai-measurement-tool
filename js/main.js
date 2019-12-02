@@ -141,7 +141,7 @@ var nav = new mapboxgl.NavigationControl({
   showZoom: true
 });
 
-mapRegular.addControl(nav, "top-left");
+mapRegular.addControl(nav, "top-right");
 
 compare = new mapboxgl.Compare(mapRegular, mapAlt, "#map-container", {
   mousemove: true,
@@ -151,7 +151,7 @@ compare = new mapboxgl.Compare(mapRegular, mapAlt, "#map-container", {
 var popup;
 
 var $body = document.getElementById("body");
-var $modal = document.getElementById("about-modal");
+var $modalBackdrop = document.getElementById("modal-backdrop");
 var $primary = document.getElementById("primary");
 var $detail = document.getElementById("detail");
 var $cityName = document.getElementById("city-name");
@@ -203,42 +203,23 @@ $roadsButton.addEventListener("click", function(e) {
 
 document.onkeydown = function(e) {
   if (e.key === "Escape") {
-    if ($modal.classList.contains("active")) hideModal();
+    if ($body.classList.contains("modal-open")) hideModal();
     if (mapRegular.getLayer("raster-tiles")) returnToPrimary(true);
   }
 };
 
 function showModal() {
-  $modal.className += " active";
+  $body.className += " modal-open";
 }
 
 function hideModal() {
-  $modal.classList.remove("active");
+  $body.classList.remove("modal-open");
 }
 
 var popup = new mapboxgl.Popup({
   closeButton: false,
   closeOnClick: false
 });
-
-// function goToCountry(number) {
-//   var code = $buttons[number].value;
-//   var country = trialRegular[code];
-//   var countryAlt = trialAlt[code];
-
-//   activateLayer(
-//     country.code,
-//     country.name,
-//     country.properties,
-//     countryAlt.properties
-//   );
-
-//   $buttons.forEach(function(button) {
-//     button.checked = false;
-//   });
-
-//   $buttons[number].checked = true;
-// }
 
 function raiDecimalToPct(decimal) {
   return Math.floor(decimal * 100) + "%";
@@ -541,6 +522,4 @@ mapRegular.on("load", function() {
       }
     }
   });
-
-  // mapRegular.setLayoutProperty("mapbox-satellite", "visibility", "visible");
 });

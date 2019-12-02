@@ -51,6 +51,194 @@
         your experience and security.
       </p>
     <![endif]-->
+    <div class="modal-container">
+      <div
+        class="modal fade"
+        id="about-modal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-content">
+          <div class="modal-body">
+            <button id="modal-close" onclick="hideModal()">
+              <img src="img/times.svg" />
+            </button>
+            <h2>About</h2>
+            <p>
+              The goal of this proof of concept application is to demonstrate
+              the potential opportunities and limitations for using open
+              datasets to calculate the RAI score.
+            </p>
+
+            <p>
+              For three trial countries in the ReCAP programme (Nepal, Malawi,
+              and Myanmar), country-specific datasets have been used that are
+              regarded as more accurate than the current open datasets. These
+              country-specific datasets have been used to generate RAI scores
+              that should better reflect the RAI scores for those countries. The
+              resulting scores can be visualised on the map.
+            </p>
+
+            <h3>
+              Sponsors
+            </h3>
+            <a href="https://azavea.com"
+              ><img class="sponsor-logo" src="/img/logo-azavea.png" alt="Azavea"
+            /></a>
+            <a href="http://www.research4cap.org/SitePages/Home.aspx"
+              ><img
+                class="sponsor-logo"
+                src="/img/logo-recap.png"
+                alt="ReCap: Research for Community Access Partnership"
+            /></a>
+            <a href="https://www.ukaiddirect.org/"
+              ><img
+                class="sponsor-logo"
+                src="/img/logo-ukaid.png"
+                alt="UK aid: from the British people"
+            /></a>
+            <h3>
+              The three datasets used in the open data approach:
+            </h3>
+
+            <ul>
+              <li>
+                <a href="https://www.openstreetmap.org/">OpenStreetMap</a>
+              </li>
+              <li>
+                <a href="https://www.worldpop.org/geodata/listing?id=29"
+                  >WorldPop</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://sedac.ciesin.columbia.edu/data/set/grump-v1-urban-ext-polygons-rev01"
+                  >GRUMP</a
+                >
+              </li>
+            </ul>
+
+            <h3>Summary of the methodology:</h3>
+            <ul>
+              <li>
+                Select commonly used tags from OpenStreetMap [Trunk, Primary,
+                Secondary, Tertiary] that serve as an approximation for
+                all-season roads.
+              </li>
+              <li>Create a mask based on 2 km buffer on these roads</li>
+              <li>Create a mask based on urban</li>
+              <li>
+                areas as defined by GRUMP Summarise the population remaining on
+                the 100 metre raster dataset from WorldPop 2019.
+              </li>
+            </ul>
+
+            <h3>Known limitations on the open datasets:</h3>
+            <ul>
+              <li>
+                OpenStreetMap is likely to be incomplete in most countries, and
+                is unlikely to match official road agency mapping unless
+                specific efforts have been made by the OSM community and/or
+                roads agencies to reconcile the mapping
+              </li>
+              <li>GRUMP was last updated in 1995</li>
+              <li>
+                No consideration is given to land cover types or terrain in the
+                2km buffer.
+              </li>
+            </ul>
+
+            <h3>Data used for Malawi country analysis:</h3>
+            <ul>
+              <li>
+                Road Network Mapping was provided by Malawi Roads Authority in
+                March 2019. Urban/Rural boundaries were provided by Malawi
+                Department of Surveys in March 2019. Accessibility Factors were
+                calculated based on data provided by District Engineers of
+                Malawi Roads Authority in September 2019.
+              </li>
+
+              <li>
+                Population data is based on WorldPop 2019 projections derived
+                from the Malawi 2008 national census reconciled at sub-national
+                level.
+              </li>
+            </ul>
+
+            <h3>Data used for Myanmar country analysis:</h3>
+            <ul>
+              <li>
+                Road Network mapping included data on the Department of Highways
+                (DOH) network obtained from the
+                <a href="https://themimu.info/assessments-and-publications"
+                  >Myanmar Information Unit</a
+                >
+                geonode in September 2019; Department of Rural Road Development
+                (DRRD) paved road data obtained from DRRD in September 2019; and
+                Ministry of Border Affairs (MOBA) network also obtained from
+                DRRD in September 2019. Urban/Rural boundaries were based on the
+                GRUMP database
+              </li>
+              <li>Accessibility Factors were not used</li>
+              <li>
+                Population data is based on WorldPop 2019 projections derived
+                from the Myanmar 2014 population census reconciled at
+                sub-national level.
+              </li>
+            </ul>
+            <h3>Data used for Nepal country analysis:</h3>
+            <ul>
+              <li>
+                Road Network Mapping for the Strategic Road Network (SRN) was
+                obtained from Department of Roads in July 2019; blacktop and
+                gravel roads in the District Core Road Network (DRCN) and Local
+                Road Networks (LRM) were obtained from the
+                <a href="https://geonepal.info/">Nepal Geonode</a> in September
+                2019. Urban/Rural boundaries were based on the GRUMP database.
+              </li>
+              <li>Accessibility Factors were not used.</li>
+              <li>
+                Population data is based on WorldPop 2019 projection derived
+                from 2011 Nepal population census and reconciled to
+                <a
+                  href="https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/1_Population/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx"
+                  >World Population Prospects 2019 projections</a
+                >
+                at sub-national level.
+              </li>
+            </ul>
+
+            <h3>Potential uses:</h3>
+            <ul>
+              <li>
+                As a preliminary estimate of RAI to encourage national
+                statistics offices and roads agencies to engage in calculation
+                and publication of RAI / SDG 9.1.1 for their countries.
+              </li>
+              <li>
+                As an estimate of absolute numbers of people (nationally,
+                regionally and globally) who live further than 2 km from the
+                nearest all-season road.
+              </li>
+              <li>
+                As a planning tool to to help identify and prioritise areas of a
+                country for rural development, linked with agricultural
+                development plans, regional development plans and other
+                considerations.
+              </li>
+            </ul>
+
+            <p>
+              For further information contact
+              <a href="mailto:rbernet@azavea.com">rbernet@azavea.com</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="app">
       <label class="satellite-toggle"
         ><div class="satellite-checkbox">
@@ -117,31 +305,17 @@
 
       <header id="primary">
         <div class="sidebar-header">
-          <h1>
-            <a href="https://azavea.com" target="_blank">
-              <img
-                class="logo"
-                src="img/azavea_white_solo.svg"
-                alt="Azavea logo"
-              />
-            </a>
-          </h1>
+          <h1>Rural Access Indicator</h1>
           <button
             id="button-modal"
             onclick="showModal()"
             style="font-weight: 500;"
           >
-            <img
-              src="img/question-circle.svg"
-              id="button-modal-image"
-              alt="Question mark icon"
-            />
             About
           </button>
         </div>
         <div class="sidebar-inner">
           <div id="view-default">
-            <h2>Rural Access Indicator</h2>
             <p>
               The Rural Access Index (RAI) was developed by the World Bank in
               2006, and is one of the most important global development
@@ -180,8 +354,8 @@
             </p>
             <a
               href="/2019_11_07_RAI_Output_Open_data_approach_with_updates.xlsx"
-              class="button"
-              >Download data</a
+              class="button download"
+              ><img src="img/download.svg" /> Download global RAI data</a
             >
           </div>
         </div>
@@ -249,6 +423,12 @@
                 <td><span id="indicator-5alt"></span></td>
               </tr>
             </table>
+
+            <a
+              href="/2019_11_07_RAI_Output_Open_data_approach_with_updates.xlsx"
+              class="button download"
+              ><img src="img/download.svg" /> Download global RAI data</a
+            >
           </div>
         </div>
       </header>
@@ -263,166 +443,6 @@
       </div>
     </div>
 
-    <div id="about-modal" class="modal">
-      <button id="modal-close" onclick="hideModal()">
-        <img src="img/times-circle.svg" />
-      </button>
-      <div class="modal-content">
-        <h2>About</h2>
-        <p>
-          The goal of this proof of concept application is to demonstrate the
-          potential opportunities and limitations for using open datasets to
-          calculate the RAI score.
-        </p>
-
-        <p>
-          For three trial countries in the ReCAP programme (Nepal, Malawi, and
-          Myanmar), country-specific datasets have been used that are regarded
-          as more accurate than the current open datasets. These
-          country-specific datasets have been used to generate RAI scores that
-          should better reflect the RAI scores for those countries. The
-          resulting scores can be visualised on the map.
-        </p>
-
-        <h3>
-          The three datasets used in the open data approach:
-        </h3>
-
-        <ul>
-          <li><a href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
-          <li>
-            <a href="https://www.worldpop.org/geodata/listing?id=29"
-              >WorldPop</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://sedac.ciesin.columbia.edu/data/set/grump-v1-urban-ext-polygons-rev01"
-              >GRUMP</a
-            >
-          </li>
-        </ul>
-
-        <h3>Summary of the methodology:</h3>
-        <ul>
-          <li>
-            Select commonly used tags from OpenStreetMap [Trunk, Primary,
-            Secondary, Tertiary] that serve as an approximation for all-season
-            roads.
-          </li>
-          <li>Create a mask based on 2 km buffer on these roads</li>
-          <li>Create a mask based on urban</li>
-          <li>
-            areas as defined by GRUMP Summarise the population remaining on the
-            100 metre raster dataset from WorldPop 2019.
-          </li>
-        </ul>
-
-        <h3>Known limitations on the open datasets:</h3>
-        <ul>
-          <li>
-            OpenStreetMap is likely to be incomplete in most countries, and is
-            unlikely to match official road agency mapping unless specific
-            efforts have been made by the OSM community and/or roads agencies to
-            reconcile the mapping
-          </li>
-          <li>GRUMP was last updated in 1995</li>
-          <li>
-            No consideration is given to land cover types or terrain in the 2km
-            buffer.
-          </li>
-        </ul>
-
-        <h3>Data used for Malawi country analysis:</h3>
-        <ul>
-          <li>
-            Road Network Mapping was provided by Malawi Roads Authority in March
-            2019. Urban/Rural boundaries were provided by Malawi Department of
-            Surveys in March 2019. Accessibility Factors were calculated based
-            on data provided by District Engineers of Malawi Roads Authority in
-            September 2019.
-          </li>
-
-          <li>
-            Population data is based on WorldPop 2019 projections derived from
-            the Malawi 2008 national census reconciled at sub-national level.
-          </li>
-        </ul>
-
-        <h3>Data used for Myanmar country analysis:</h3>
-        <ul>
-          <li>
-            Road Network mapping included data on the Department of Highways
-            (DOH) network obtained from the
-            <a href="https://themimu.info/assessments-and-publications"
-              >Myanmar Information Unit</a
-            >
-            geonode in September 2019; Department of Rural Road Development
-            (DRRD) paved road data obtained from DRRD in September 2019; and
-            Ministry of Border Affairs (MOBA) network also obtained from DRRD in
-            September 2019. Urban/Rural boundaries were based on the GRUMP
-            database
-          </li>
-          <li>Accessibility Factors were not used</li>
-          <li>
-            Population data is based on WorldPop 2019 projections derived from
-            the Myanmar 2014 population census reconciled at sub-national level.
-          </li>
-        </ul>
-        <h3>Data used for Nepal country analysis:</h3>
-        <ul>
-          <li>
-            Road Network Mapping for the Strategic Road Network (SRN) was
-            obtained from Department of Roads in July 2019; blacktop and gravel
-            roads in the District Core Road Network (DRCN) and Local Road
-            Networks (LRM) were obtained from the
-            <a href="https://geonepal.info/">Nepal Geonode</a> in September
-            2019. Urban/Rural boundaries were based on the GRUMP database.
-          </li>
-          <li>Accessibility Factors were not used.</li>
-          <li>
-            Population data is based on WorldPop 2019 projection derived from
-            2011 Nepal population census and reconciled to
-            <a
-              href="https://population.un.org/wpp/Download/Files/1_Indicators%20(Standard)/EXCEL_FILES/1_Population/WPP2019_POP_F01_1_TOTAL_POPULATION_BOTH_SEXES.xlsx"
-              >World Population Prospects 2019 projections</a
-            >
-            at sub-national level.
-          </li>
-        </ul>
-
-        <h3>Potential uses:</h3>
-        <ul>
-          <li>
-            As a preliminary estimate of RAI to encourage national statistics
-            offices and roads agencies to engage in calculation and publication
-            of RAI / SDG 9.1.1 for their countries.
-          </li>
-          <li>
-            As an estimate of absolute numbers of people (nationally, regionally
-            and globally) who live further than 2 km from the nearest all-season
-            road.
-          </li>
-          <li>
-            As a planning tool to to help identify and prioritise areas of a
-            country for rural development, linked with agricultural development
-            plans, regional development plans and other considerations.
-          </li>
-        </ul>
-
-        <p>
-          For further information contact
-          <a href="mailto:rbernet@azavea.com">rbernet@azavea.com</a>.
-        </p>
-
-        <a
-          href="/2019_11_07_RAI_Output_Open_data_approach_with_updates.xlsx"
-          class="button"
-          style="margin-bottom: 20px;"
-          >Download data</a
-        >
-      </div>
-    </div>
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js"></script>
     <script src="js/countryToBboxIndex.js"></script>
