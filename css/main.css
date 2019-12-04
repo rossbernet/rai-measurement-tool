@@ -337,7 +337,7 @@ header .text {
 
 header h1 {
   margin: 10px 0 -10px;
-  font-size: 36px;
+  font-size: 28px;
   line-height: 1.1;
   font-weight: 800;
 }
@@ -366,7 +366,7 @@ header .logo {
   border-radius: 100px;
   margin-top: 0;
   position: relative;
-  top: -30px;
+  top: -14px;
 }
 
 #button-modal-image {
