@@ -1499,7 +1499,7 @@ body:not(.modal-open) .modal-container {
   min-height: calc(100% - (0.5rem * 2));
 }
 
-.sponsor-logo {
+.logo {
   max-width: 170px;
   max-height: 80px;
   margin-right: 15px;
