@@ -65,25 +65,7 @@
             <button id="modal-close" onclick="hideModal()">
               <img src="img/times.svg" />
             </button>
-            <h2>About</h2>
-            <p>
-              The goal of this proof of concept application is to demonstrate
-              the potential opportunities and limitations for using open
-              datasets to calculate the RAI score.
-            </p>
 
-            <p>
-              For three trial countries in the ReCAP programme (Nepal, Malawi,
-              and Myanmar), country-specific datasets have been used that are
-              regarded as more accurate than the current open datasets. These
-              country-specific datasets have been used to generate RAI scores
-              that should better reflect the RAI scores for those countries. The
-              resulting scores can be visualised on the map.
-            </p>
-
-            <h3>
-              Sponsors
-            </h3>
             <a target="_blank" href="https://azavea.com"
               ><img class="logo" src="/img/logo-azavea.png" alt="Azavea"
             /></a>
@@ -101,6 +83,65 @@
                 src="/img/logo-ukaid.png"
                 alt="UK aid: from the British people"
             /></a>
+
+            <h2>About</h2>
+
+
+
+
+            <p>
+              The Rural Access Index (RAI) was developed by the World Bank in
+              2006, and is one of the most important global development
+              indicators in the transport sector. The RAI is defined as the
+              “proportion of the rural population who live within 2 km of
+              an all-season road”.
+            </p>
+
+            <p>
+              The original 2006 methodology was based on household surveys.
+              In 2016, the World Bank partnered with Department for
+              International Development (DFID) of the United Kingdom and the
+              Research for Community Access Partnership (ReCAP) to develop a
+              new methodology. The 2016 World Bank methodology took advantage
+              of geospatial techniques and data collected using innovative
+              technologies, and was designed to be sustainable, consistent,
+              simple, and operationally relevant. The RAI was adopted as UN
+              SDG Indicator 9.1.1. in 2016, and World Bank is the custodian
+              of that indicator.
+            </p>
+
+
+
+            <p>
+              TRL under a separate ReCAP project in 2019 has developed
+              Supplemental Guidelines to the World Bank methodology providing
+              additional detailed guidance for calculation of the RAI.
+            </p>
+
+            <p>
+               The Supplementary Guidelines developed by TRL will be available
+               at <a href="http://www.research4cap.org/SitePages/Home.aspx">
+                 this link</a>
+               when they are published soon.
+            </p>
+
+
+            <p>
+              The goal of this proof of concept application is to demonstrate
+              the potential opportunities and limitations for using open
+              datasets to calculate the RAI score.
+            </p>
+
+            <p>
+              For three trial countries in the ReCAP programme (Nepal, Malawi,
+              and Myanmar), country-specific datasets have been used that are
+              regarded as more accurate than the current open datasets. These
+              country-specific datasets have been used to generate RAI scores
+              that should better reflect the RAI scores for those countries. The
+              resulting scores can be visualised on the map.
+            </p>
+
+
             <h3>
               The three datasets used in the open data approach:
             </h3>
@@ -127,13 +168,14 @@
               <li>
                 Select commonly used tags from OpenStreetMap [Trunk, Primary,
                 Secondary, Tertiary] that serve as an approximation for
-                all-season roads.
+                all-season roads
               </li>
               <li>Create a mask based on 2 km buffer on these roads</li>
-              <li>Create a mask based on urban</li>
-              <li>
-                areas as defined by GRUMP Summarise the population remaining on
-                the 100 metre raster dataset from WorldPop 2019.
+              <li>Create a mask based on urban areas as defined by GRUMP urban
+                extents polygons
+              </li>
+              <li>Summarise the population remaining on
+              the 100 metre raster dataset from WorldPop 2019
               </li>
             </ul>
 
@@ -145,10 +187,10 @@
                 specific efforts have been made by the OSM community and/or
                 roads agencies to reconcile the mapping
               </li>
-              <li>GRUMP was last updated in 1995</li>
+              <li>GRUMP urban extents mapping was last updated in 1995</li>
               <li>
                 No consideration is given to land cover types or terrain in the
-                2km buffer.
+                2km buffer
               </li>
             </ul>
 
@@ -156,12 +198,17 @@
             <ul>
               <li>
                 Road Network Mapping was provided by Malawi Roads Authority in
-                March 2019. Urban/Rural boundaries were provided by Malawi
-                Department of Surveys in March 2019. Accessibility Factors were
+                March 2019.
+              </li>
+              <li>
+                Urban/Rural boundaries were provided by Malawi
+                Department of Surveys in March 2019.
+              </li>
+              <li>
+                Accessibility Factors were
                 calculated based on data provided by District Engineers of
                 Malawi Roads Authority in September 2019.
               </li>
-
               <li>
                 Population data is based on WorldPop 2019 projections derived
                 from the Malawi 2008 national census reconciled at sub-national
@@ -180,16 +227,10 @@
                 geonode in September 2019; Department of Rural Road Development
                 (DRRD) paved road data obtained from DRRD in September 2019; and
                 Ministry of Border Affairs (MOBA) network also obtained from
-                DRRD in September 2019. Urban/Rural boundaries were based on the
-                GRUMP database
-              </li>
-              <li>Accessibility Factors were not used</li>
-              <li>
-                Population data is based on WorldPop 2019 projections derived
-                from the Myanmar 2014 population census reconciled at
-                sub-national level.
+                DRRD in September 2019.
               </li>
             </ul>
+
             <h3>Data used for Nepal country analysis:</h3>
             <ul>
               <li>
@@ -232,10 +273,19 @@
               </li>
             </ul>
 
+            <h3>Disclaimer:</h3>
+            <ul>
+              <li>
+                We understand that borders are not universally agreed upon.
+                We use the "Admin O" border geometry provided by
+                <a href="https://www.naturalearthdata.com/">Natural Earth</a>
+              </li>
+            </ul>
             <p>
               For further information contact
               <a href="mailto:rbernet@azavea.com">rbernet@azavea.com</a>.
             </p>
+
           </div>
         </div>
       </div>
@@ -332,9 +382,9 @@
               <a
                 target="_blank"
                 href="http://www.research4cap.org/SitePages/Home.aspx"
-                >the Research for Community Access Partnership (ReCAP)</a
+                >Research for Community Access Partnership (ReCAP)</a
               >, TRL, and Azavea is a proof of concept tool that displays an
-              estimate RAI for all countries based on three open datasets (<a
+              estimate RAI for all countries based on three open datasets: <a
                 target="_blank"
                 href="https://www.openstreetmap.org/"
                 >OpenStreetMap</a
@@ -343,7 +393,7 @@
                 target="_blank"
                 href="https://sedac.ciesin.columbia.edu/data/set/grump-v1-urban-ext-polygons-rev01"
                 >GRUMP</a
-              >).
+              >.
             </p>
             <p>
               For three trial countries in the ReCAP 2019 project (Nepal,
