@@ -63,54 +63,50 @@
         <div class="modal-content">
           <div class="modal-body">
             <button id="modal-close" onclick="hideModal()">
-              <img src="img/times.svg" />
+              <img src="img/times-circle.svg" />
             </button>
 
-            <a target="_blank" href="https://azavea.com"
-              ><img class="logo" src="/img/logo-azavea.png" alt="Azavea"
-            /></a>
-            <a
-              target="_blank"
-              href="http://www.research4cap.org/SitePages/Home.aspx"
-              ><img
-                class="logo"
-                src="/img/logo-recap.png"
-                alt="ReCap: Research for Community Access Partnership"
-            /></a>
-            <a target="_blank" href="https://www.ukaiddirect.org/"
-              ><img
-                class="logo"
-                src="/img/logo-ukaid.png"
-                alt="UK aid: from the British people"
-            /></a>
+            <div class="logos">
+              <a target="_blank" href="https://azavea.com"
+                ><img class="logo" src="/img/logo-azavea.png" alt="Azavea"
+              /></a>
+              <a
+                target="_blank"
+                href="http://www.research4cap.org/SitePages/Home.aspx"
+                ><img
+                  class="logo"
+                  src="/img/logo-recap.png"
+                  alt="ReCap: Research for Community Access Partnership"
+              /></a>
+              <a target="_blank" href="https://www.ukaiddirect.org/"
+                ><img
+                  class="logo"
+                  src="/img/logo-ukaid.png"
+                  alt="UK aid: from the British people"
+              /></a>
+            </div>
 
             <h2>About</h2>
-
-
-
 
             <p>
               The Rural Access Index (RAI) was developed by the World Bank in
               2006, and is one of the most important global development
               indicators in the transport sector. The RAI is defined as the
-              “proportion of the rural population who live within 2 km of
-              an all-season road”.
+              “proportion of the rural population who live within 2 km of an
+              all-season road”.
             </p>
 
             <p>
-              The original 2006 methodology was based on household surveys.
-              In 2016, the World Bank partnered with Department for
-              International Development (DFID) of the United Kingdom and the
-              Research for Community Access Partnership (ReCAP) to develop a
-              new methodology. The 2016 World Bank methodology took advantage
-              of geospatial techniques and data collected using innovative
-              technologies, and was designed to be sustainable, consistent,
-              simple, and operationally relevant. The RAI was adopted as UN
-              SDG Indicator 9.1.1. in 2016, and World Bank is the custodian
-              of that indicator.
+              The original 2006 methodology was based on household surveys. In
+              2016, the World Bank partnered with Department for International
+              Development (DFID) of the United Kingdom and the Research for
+              Community Access Partnership (ReCAP) to develop a new methodology.
+              The 2016 World Bank methodology took advantage of geospatial
+              techniques and data collected using innovative technologies, and
+              was designed to be sustainable, consistent, simple, and
+              operationally relevant. The RAI was adopted as UN SDG Indicator
+              9.1.1. in 2016, and World Bank is the custodian of that indicator.
             </p>
-
-
 
             <p>
               TRL under a separate ReCAP project in 2019 has developed
@@ -119,12 +115,12 @@
             </p>
 
             <p>
-               The Supplementary Guidelines developed by TRL will be available
-               at <a href="http://www.research4cap.org/SitePages/Home.aspx">
-                 this link</a>
-               when they are published soon.
+              The Supplementary Guidelines developed by TRL will be available at
+              <a href="http://www.research4cap.org/SitePages/Home.aspx">
+                this link</a
+              >
+              when they are published soon.
             </p>
-
 
             <p>
               The goal of this proof of concept application is to demonstrate
@@ -140,7 +136,6 @@
               that should better reflect the RAI scores for those countries. The
               resulting scores can be visualised on the map.
             </p>
-
 
             <h3>
               The three datasets used in the open data approach:
@@ -171,11 +166,13 @@
                 all-season roads
               </li>
               <li>Create a mask based on 2 km buffer on these roads</li>
-              <li>Create a mask based on urban areas as defined by GRUMP urban
+              <li>
+                Create a mask based on urban areas as defined by GRUMP urban
                 extents polygons
               </li>
-              <li>Summarise the population remaining on
-              the 100 metre raster dataset from WorldPop 2019
+              <li>
+                Summarise the population remaining on the 100 metre raster
+                dataset from WorldPop 2019
               </li>
             </ul>
 
@@ -201,13 +198,12 @@
                 March 2019.
               </li>
               <li>
-                Urban/Rural boundaries were provided by Malawi
-                Department of Surveys in March 2019.
+                Urban/Rural boundaries were provided by Malawi Department of
+                Surveys in March 2019.
               </li>
               <li>
-                Accessibility Factors were
-                calculated based on data provided by District Engineers of
-                Malawi Roads Authority in September 2019.
+                Accessibility Factors were calculated based on data provided by
+                District Engineers of Malawi Roads Authority in September 2019.
               </li>
               <li>
                 Population data is based on WorldPop 2019 projections derived
@@ -276,8 +272,8 @@
             <h3>Disclaimer:</h3>
             <ul>
               <li>
-                We understand that borders are not universally agreed upon.
-                We use the "Admin O" border geometry provided by
+                We understand that borders are not universally agreed upon. We
+                use the "Admin O" border geometry provided by
                 <a href="https://www.naturalearthdata.com/">Natural Earth</a>
               </li>
             </ul>
@@ -285,7 +281,6 @@
               For further information contact
               <a href="mailto:rbernet@azavea.com">rbernet@azavea.com</a>.
             </p>
-
           </div>
         </div>
       </div>
@@ -346,11 +341,11 @@
         <div class="legend-items">
           <div class="legend-item">
             <div class="legend-color legend-road"></div>
-            <div class="legend-label">In RAI</div>
+            <div class="legend-label">Included in RAI</div>
           </div>
           <div class="legend-item">
             <div class="legend-color legend-road" style="width: 2px;"></div>
-            <div class="legend-label">Not included</div>
+            <div class="legend-label">Not included in RAI</div>
           </div>
         </div>
       </div>
@@ -384,9 +379,8 @@
                 href="http://www.research4cap.org/SitePages/Home.aspx"
                 >Research for Community Access Partnership (ReCAP)</a
               >, TRL, and Azavea is a proof of concept tool that displays an
-              estimate RAI for all countries based on three open datasets: <a
-                target="_blank"
-                href="https://www.openstreetmap.org/"
+              estimate RAI for all countries based on three open datasets:
+              <a target="_blank" href="https://www.openstreetmap.org/"
                 >OpenStreetMap</a
               >, <a target="_blank" href="http://worldpop.org/">WorldPop</a>,
               <a

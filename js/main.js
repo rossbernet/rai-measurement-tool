@@ -232,7 +232,7 @@ function updatePopup(event) {
   var name = event.features[0].properties.name;
   var indicator = raiDecimalToPct(event.features[0].properties.pct_served);
 
-  if (countryCode !== selectedCountryCode) {
+  if (countryCode !== selectedCountryCode && countryCode !== "ESH") {
     if (countryCode !== hoveredCountryCode) {
       hoveredCountryCode = countryCode;
       popup.setHTML(

@@ -536,10 +536,10 @@ body.modal-open #about-modal {
 
 .modal-close {
   position: absolute;
-  right: 15px;
-  top: 15px;
-  height: 48px;
-  width: 48px;
+  right: 0px;
+  top: -13px;
+  height: 36px;
+  width: 36px;
   background: none;
   box-shadow: none;
 }
@@ -1499,9 +1499,13 @@ body:not(.modal-open) .modal-container {
   min-height: calc(100% - (0.5rem * 2));
 }
 
+.logos {
+  text-align: center;
+}
+
 .logo {
-  max-width: 170px;
-  max-height: 80px;
+  max-width: 150px;
+  max-height: 70px;
   margin-right: 15px;
 }
 
