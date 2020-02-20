@@ -9,7 +9,7 @@ var trialAlt = {
       pop_served: 13552331.01,
       pct_served: 0.6624,
       roads_total_km: 81795.302,
-      roads_included_km: 18714.787
+      roads_included_km: 24854.000
     }
   },
   MWI: {
@@ -22,7 +22,7 @@ var trialAlt = {
       pop_served: 9480698.478,
       pct_served: 0.6307,
       roads_total_km: 14018.591,
-      roads_included_km: 13575.399
+      roads_included_km: 12457.399
     }
   },
   MMR: {
@@ -35,7 +35,7 @@ var trialAlt = {
       pop_served: 23036539.79,
       pct_served: 0.6217,
       roads_total_km: 79833.916,
-      roads_included_km: 74457.683
+      roads_included_km: 78309.00
     }
   }
 };
